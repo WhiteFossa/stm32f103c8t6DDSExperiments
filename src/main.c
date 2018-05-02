@@ -52,18 +52,11 @@ int main(int argc, char* argv[])
 	// Hardware initialization
 	SwitchClockToHSE();
 	SwitchClockToPLL();
-
-	RCC->APB2ENR |= RCC_APB2ENR_IOPCEN;
-
-	GPIOC->CRH &= ~(GPIO_CRH_MODE13_1 | GPIO_CRH_MODE13_0 | GPIO_CRH_CNF13_1 | GPIO_CRH_CNF13_0);
-	GPIOC->CRH |= (GPIO_CRH_MODE13_1 | GPIO_CRH_MODE13_0); // PC13 output
+	InitSPI1();
 
 	while(1)
 	{
-		GPIOC->ODR |= GPIO_ODR_ODR13;
-		delay();
-		GPIOC->ODR &= ~GPIO_ODR_ODR13;
-		delay();
+		SendSPIData(0xFFFE);
 	}
 }
 
