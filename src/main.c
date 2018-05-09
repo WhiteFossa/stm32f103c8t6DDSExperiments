@@ -41,22 +41,25 @@ int main(int argc, char* argv[])
 	// Hardware initialization
 	HalClockSwitchToHSE();
 	HalClockSwitchToPLL();
-	HalSPI1Init();
+	HalDAC1Init();
 
-	HalSPI1SendData(0xFFFF);
+	double phase = 0;
+	double value = 0;
+	while(1)
+	{
+		value = 0x7FFF * sin(phase) + 0x8000;
 
-//	uint16_t value = 0;
-//	while(1)
-//	{
-//		SendSPIData(value);
-//		value ++;
-//
-//		volatile uint32_t counter = 0xFFF;
-//		while(counter > 0)
-//		{
-//			counter --;
-//		}
-//	}
+		HalDAC1Set((uint16_t)floor(value + 0.5));
+
+		if (phase > 2 * M_PI)
+		{
+			phase -= 2 * M_PI;
+		}
+		else
+		{
+			phase += 0.1;
+		}
+	}
 
 }
 
