@@ -10,7 +10,4 @@
 #include "hal/spi.h"
 
 
-// Dumb delay
-void delay(void);
-
 #endif /* MAIN_H_ */

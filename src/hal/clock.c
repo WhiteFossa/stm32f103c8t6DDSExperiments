@@ -7,7 +7,7 @@
 
 #include "clock.h"
 
-void SwitchClockToHSE(void)
+void HalClockSwitchToHSE(void)
 {
 	// Switching HSE on
 	RCC->CR |= RCC_CR_HSEON;
@@ -21,7 +21,7 @@ void SwitchClockToHSE(void)
 	RCC->CR &= ~RCC_CR_HSION;
 }
 
-void SwitchClockToPLL(void)
+void HalClockSwitchToPLL(void)
 {
 	RCC->CFGR |= RCC_CFGR_PLLSRC_HSE; // PLL source is HSE
 	RCC->CFGR &= ~RCC_CFGR_PLLXTPRE; // PLL source is not divided
@@ -49,7 +49,7 @@ void SwitchClockToPLL(void)
 	while ((RCC->CFGR & RCC_CFGR_SWS) != RCC_CFGR_SWS_PLL) {}; // Waiting for switching to PLL
 }
 
-void ActivateLSEClock(void)
+void HalClockActivateLSE(void)
 {
 	// Enabling power and backup domain interfaces clock
 	RCC->APB1ENR |= RCC_APB1ENR_PWREN | RCC_APB1ENR_BKPEN;

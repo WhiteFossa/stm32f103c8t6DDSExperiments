@@ -8,28 +8,22 @@
 #ifndef HAL_SPI_H_
 #define HAL_SPI_H_
 
-#include "../main.h" // For delay
+// Hardware SPI
 
-// Dumbest delay-based SPI implementation
+#include "common.h"
 
 // Pins defines
 // CS - PA4
 #define CS_PIN		GPIO_ODR_ODR4
 
-// SCLK - PA5
-#define SCLK_PIN	GPIO_ODR_ODR5
-
-// MOSI - PA7
-#define MOSI_PIN	GPIO_ODR_ODR7
-
 // Initialize SPI1
-void InitSPI1(void);
+void HalSPI1Init(void);
 
 // On or off pin. 0x00 - off, any other = on
-void ChangeSPIPinState(uint8_t state, uint32_t pin);
+void HalSPI1ChangeCSState(uint8_t state);
 
 // Sends 16 bit of data, MSB first
-void SendSPIData(uint16_t data);
+void HalSPI1SendData(uint16_t data);
 
 
 #endif /* HAL_SPI_H_ */

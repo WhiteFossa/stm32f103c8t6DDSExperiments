@@ -20,16 +20,16 @@
 /**
  * Switches MCU from HSI to HSE clock and disables HSI after switch.
  */
-void SwitchClockToHSE(void);
+void HalClockSwitchToHSE(void);
 
 /**
  * Switches MCU from HSE clock to PLL clock.
  */
-void SwitchClockToPLL(void);
+void HalClockSwitchToPLL(void);
 
 /**
  * Clocking RTC from LSE clock.
  */
-void ActivateLSEClock(void);
+void HalClockActivateLSE(void);
 
 #endif /* HAL_CLOCK_H_ */

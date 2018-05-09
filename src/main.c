@@ -36,28 +36,28 @@
 
 #include "main.h"
 
-
-void delay(void)
-{
-	volatile uint32_t counter = 0x0FFFFF;
-	while(counter > 0)
-	{
-		counter --;
-	}
-}
-
-
 int main(int argc, char* argv[])
 {
 	// Hardware initialization
-	SwitchClockToHSE();
-	SwitchClockToPLL();
-	InitSPI1();
+	HalClockSwitchToHSE();
+	HalClockSwitchToPLL();
+	HalSPI1Init();
 
-	while(1)
-	{
-		SendSPIData(0xFFFE);
-	}
+	HalSPI1SendData(0xFFFF);
+
+//	uint16_t value = 0;
+//	while(1)
+//	{
+//		SendSPIData(value);
+//		value ++;
+//
+//		volatile uint32_t counter = 0xFFF;
+//		while(counter > 0)
+//		{
+//			counter --;
+//		}
+//	}
+
 }
 
 #pragma GCC diagnostic pop
